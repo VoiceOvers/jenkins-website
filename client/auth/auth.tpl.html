@@ -1,0 +1,47 @@
+<section class="content-20 v-center signin">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a class="invisible" id="join"></a>
+                    <h3 ng-hide="isForgot">Sign in now</h3>
+                    <h3 ng-show="isForgot">Retrieve your password</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="signup-form">
+                        <form class="clearfix" novalidate>
+                            <alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
+                            <div class="form-group">
+                                <label>E-mail address</label>
+                                <input type="email" class="form-control" name="username" placeholder="E-mail address" ng-model="username">
+                            </div>
+                            <div class="form-group" ng-hide="isForgot">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password" ng-model="password">
+                            </div>
+                            <div class="form-divider"></div>
+                            <button ng-hide="isForgot" class="btn btn-huge btn-wide btn-info" ng-click="login()">Signin</button>
+                            <button ng-show="isForgot" class="btn btn-huge btn-wide btn-info" ng-click="forgotPassword(username)">Retrieve</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1 features">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h6>Not a member yet?</h6>
+                            No problem, it's fast, easy and free to create an account to get started. Just <a ui-sref="register">click here</a> to begin.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h6>Already a member, but forgot your password?</h6>
+                            No problem, it happens to us all. Just <a ng-click="isForgot = true">click here</a> and we'll get you right back on your way.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

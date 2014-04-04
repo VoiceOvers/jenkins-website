@@ -1,0 +1,25 @@
+<section class="account-nav">
+  <div class="row">
+    <div class="col-xs-3">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <i class="fa fa-user"><a ui-sref="account.basic">&nbsp;Account Settings</a></i>
+        </li>
+        <li class="list-group-item"><i class="fa fa-money"><a ui-sref="account.payment">&nbsp;Payment</a></i>
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-flask"><a ui-sref="account.access">&nbsp;Training Courses</a></i>
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-sign-out"><a href="#!" ng-click="logoutUser()">&nbsp;Logout</a>
+          </i>
+        </li>
+        <li class="list-group-item" ng-if="user.isAdmin">
+          <i class="fa fa-tachometer"><a ui-sref="admin">&nbsp;Administration Page</a></i>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-9" ui-view></div>
+  </div>
+</section>

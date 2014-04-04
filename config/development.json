@@ -1,0 +1,100 @@
+{
+  "api": {
+    "aws": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "facebook": {
+      "appId": "@@@@@",
+      "appSecret": "@@@@@"
+    },
+    "google": {
+      "clientId": "@@@@@",
+      "clientSecret": "@@@@@"
+    },
+    "mandrill": {
+      "apiKey": ""
+    },
+    "rackspace": {
+      "username": "@@@@@",
+      "apiKey": "@@@@@"
+    },
+    "twitter": {
+      "accessToken": "@@@@@",
+      "accessTokenSecret": "@@@@@",
+      "consumerKey": "@@@@@",
+      "consumerSecret": "@@@@@"
+    }
+  },
+  "cookie": {
+    "secret": "J3nkinszApp"
+  },
+  "db": {
+    "mongo": {
+      "host": "ds027668.mongolab.com",
+      "port": 27668,
+      "username": "jenkinsadmin",
+      "password": "Fake123!",
+      "db": "jenkins"
+    },
+    "redis": {
+      "host": "grideye.redistogo.com",
+      "port": 10350,
+      "password": "11b64e07448e18fefeeb439a666ac4ca"
+    }
+  },
+  "log": {
+    "_use": [
+      "console",
+      "sns"
+    ],
+    "transport": {
+      "console": {
+        "level": "debug"
+      },
+      "file": {
+        "level": "error"
+      },
+      "mongo": {
+        "level": "error"
+      },
+      "sns": {
+        "level": "error",
+        "subscriber": "@@@@@",
+        "topicArn": "@@@@@"
+      }
+    }
+  },
+  "session": {
+    "_use": "redis",
+    "key": "sid",
+    "secret": "J3nkinszApp",
+    "store": {
+      "mongo": {
+        "collection": "sessions"
+      },
+      "redis": {
+        "name": "grideye-10350",
+        "prefix": "jenkins:sessions"
+      }
+    }
+  },
+  "socketio": {
+    "store": "redis"
+  },
+  "storage": {
+    "_use": "s3",
+    "backend": {
+      "cloudFiles": {
+        "container": {
+          "main": "@@@@@"
+        }
+      },
+      "s3": {
+        "bucket": {
+          "main": "@@@@@"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<section class="content-20 v-center signin">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a class="invisible" id="join"></a>
+                    <h3>Start your account</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="signup-form">
+                        <form class="clearfix" novalidate>
+                            <alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
+                            <div class="form-group">
+                                <label>E-mail address</label>
+                                <input type="email" class="form-control" name="username" placeholder="E-mail address" ng-model="username">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" ng-required class="form-control" name="password" placeholder="Password" ng-model="password">
+                            </div>
+                            <div class="form-group">
+                                <label>Verify Password</label>
+                                <input type="password" ng-required class="form-control" name="passwordRepeat" placeholder="Password" ng-model="passwordRepeat">
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" ng-required class="form-control" name="firstName" placeholder="Password" ng-model="firstName">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" ng-required class="form-control" name="lastName" placeholder="Password" ng-model="lastName">
+                            </div>
+                            <div class="form-divider"></div>
+                            <button class="btn btn-huge btn-wide btn-info" ng-click="register()">Register!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1 features">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h6>You're almost there</h6>
+                            In a few short steps, you'll be on your way to an incredible new method of training.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

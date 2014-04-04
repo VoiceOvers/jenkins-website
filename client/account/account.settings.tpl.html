@@ -1,0 +1,64 @@
+<section>
+  <div class="col-xs-10">
+    <div class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2 class="panel-title">Contact Information</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row content">
+            <div class="col-xs-6">
+              <label>First Name:&nbsp;</label>
+              <a editable-text="user.name.first" onaftersave="updateUser()">{{user.name.first || 'First Name'}}</a>
+            </div>
+            <div class="col-xs-6">
+              <label>Last Name:&nbsp;</label>
+              <a editable-text="user.name.last" onaftersave="updateUser()">{{user.name.last || 'Last Name'}}</a>
+            </div>
+          </div>
+          <br/>
+          <div class="row content">
+            <div class="col-xs-6">
+              <label>Email:&nbsp;</label>
+              <a editable-text="user.email" onaftersave="updateUser()">{{user.email || 'Email'}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="user.auth.local.username" class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2 class="panel-title">Password Management</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row content">
+            <div class="col-xs-6">
+              <label class="section-head">New Password:&nbsp;</label>
+              <input ng-model="newPassword" placeholder="New Password" name="name" type="password" ng-readonly="!editPassword">
+            </div>
+          </div>
+          <br/>
+          <div class="row content">
+            <div class="col-xs-6">
+              <label class="section-head">Confirm Password:&nbsp;</label>
+              <input ng-model="confirmPassword" placeholder="Confirm Password" type="password" ng-readonly="!editPassword">
+            </div>
+          </div>
+          <br/>
+          <div class="row" ng-hide="editPassword">
+            <div class="col-xs-12">
+              <button class="btn btn-primary" ng-click="editPassword = true">Edit</button>
+            </div>
+          </div>
+          <div class="row" ng-show="editPassword">
+            <div class="col-xs-12">
+              <button class="btn btn-success" ng-click="updatePassword()">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

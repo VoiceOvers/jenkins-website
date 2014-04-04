@@ -1,0 +1,48 @@
+<alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
+
+<!-- content-8  -->
+<section class="projects-4">
+    <div class="container">
+        <div class="projects row" ng-repeat="group in groups">
+            <div class="project-wrapper col-sm-3" ng-repeat="course in group.items">
+                <div class="project" ng-click="!course.selected ? addToCart(course) : removeFromCart(course)">
+                    <div class="photo-wrapper {{cssMaps.wrapper[course.type]}}">
+                        <div class="photo"></div>
+                        <a class="overlay">{{course.training.name}}</a>
+                    </div>
+                    <div class="info pull-left">
+                        <a href="#" class="name {{cssMaps.links[course.type]}}">Course averages:</a>
+                        <ul>
+                          <li>Structured: {{ course.stats.structuredAverages.average }}%</li>
+                          <li ng-repeat="subcategory in course.stats.nonStructuredAverages">{{ subcategory.name }}: {{ subcategory.average }}%</li>
+                        </ul>
+                    </div>
+                    <div class="info pull-right">
+                      <a class="btn btn-warning" ui-sref="exercise.new({trainingId: course.training._id})">TAKE FULL EXAM</a>
+                      <a class="btn btn-warning dropdown-toggle">PRACTICE A CATEGORY <i class="fa fa-chevron-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li ng-repeat="subcategory in course.training.subCategories"><a ui-sref="exercise.new({trainingId: course.training._id, subCategoryId: subcategory._id})">{{ subcategory.content.name }}</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.container-->
+</section>
+
+<!-- <section class="home">
+
+  <a class="dropdown-toggle">
+    {{currentCategory.name}}
+  </a>
+  <ul class="dropdown-menu">
+    <li ng-repeat="choice in categories">
+      <a ng-click="currentCategory = choice">{{choice.name}}</a>
+    </li>
+  </ul>
+
+  <button ng-click="structuredExercise()">Take Exam Practice Test</button>
+  <button ng-click="nonStructuredExercise()">Practice Specific SubCategory</button>
+
+</section> -->
