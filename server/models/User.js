@@ -46,7 +46,7 @@ var schema = new mongoose.Schema({
       token: { type: String },
       profile: { type: mongoose.Schema.Types.Mixed }
     }
-  }
+  },
   roles: [{ type: String, default: []}]
 });
 
