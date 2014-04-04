@@ -36,7 +36,6 @@ gulp.task('templates', function () {
 gulp.task('lint', function () {
   var client_paths = [
     project.path.client + '/**/*.js',
-    project.path.server + '/**/*.js',
     '!' + project.path.client + '/{templates.js,js/**,frameworks/common-files,frameworks/common-files/**,lib,lib/**,frameworks/ui-kit,frameworks/ui-kit/**}'
   ];
 
@@ -87,7 +86,6 @@ gulp.task('scripts', function() {
 
 gulp.task('dependencies', function () {
   return gulp.src([
-    project.path.client + '/common/directive.scrollonclick.js',
     project.path.bower + '/angular-easyfb/angular-easyfb.js',
     project.path.bower + '/angular-ui-router/release/angular-ui-router.js',
     project.path.bower + '/angulartics/src/angulartics.js',
