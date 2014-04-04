@@ -14,7 +14,6 @@ angular.module( project.name, [
   'ngSanitize',
   'ui.jq',
   'xeditable',
-  'localytics.directives',
   require('./account').name,
   require('./admin').name,
   require('./auth').name,
