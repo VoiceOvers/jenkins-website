@@ -14,6 +14,7 @@ var requireDir = require('require-dir');
 
 var koa = require('koa');
 
+console.log(process.env.NODE_ENV);
 //Find out which environment we are preparing for.
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require(path.join(path.normalize(__dirname + '/../config'), process.env.NODE_ENV));

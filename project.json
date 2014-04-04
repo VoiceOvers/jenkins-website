@@ -2,7 +2,6 @@
   "name": "jenkins",
   "path": {
     "bower": "client/lib",
-    "browserify": "client/browserify",
     "npm": "node_modules/",
     "client": "client",
     "config": "config",

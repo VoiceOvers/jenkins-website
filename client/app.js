@@ -6,19 +6,20 @@ var project = require('../project.json');
 angular.module( project.name, [
   project.name + '-templates',
   'ui.router',
-  'angulartics',
-  'ezfb',
+  // 'angulartics',
+  // 'ezfb',
   'ui.bootstrap',
   'ui.bootstrap.tpls',
   'ngCookies',
   'ngSanitize',
   'ui.jq',
   'xeditable',
-  require('./account').name,
-  require('./admin').name,
-  require('./auth').name,
-  require('./home').name,
-  require('./register').name
+  // require('./account').name,
+  // require('./admin').name,
+  require('./auth').name
+  //,
+  // require('./home').name,
+  // require('./register').name
 ])
 
 .config( function myAppConfig ($urlRouterProvider, $locationProvider, $httpProvider) {
