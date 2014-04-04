@@ -98,10 +98,8 @@ gulp.task('dependencies', function () {
     project.path.bower + '/json3/lib/json3.js',
     project.path.bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
     project.path.bower + '/chosen/chosen.jquery.js',
-    project.path.bower + '/angular-chosen-localytics/chosen.js',
     project.path.bower + '/angular-xeditable/dist/js/xeditable.js',
     project.path.bower + '/angular-masonry/angular-masonry.js',
-    project.path.bower + '/angularLocalStorage/src/angularLocalStorage.js'
   ])
   .pipe($.concat('deps.js'))
   .pipe(gulp.dest(project.path.client + '/js/'));

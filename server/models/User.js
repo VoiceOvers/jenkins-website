@@ -46,16 +46,7 @@ var schema = new mongoose.Schema({
       token: { type: String },
       profile: { type: mongoose.Schema.Types.Mixed }
     }
-  },
-  stripe: {
-    cardNum: {type: String, default: null},
-    expMonth: {type: String, default: null},
-    expYear: {type: String, default: null},
-    id: {type: String, default: null}
-  },
-  training: {
-    access: [{type: mongoose.Schema.Types.ObjectId, default: [], ref: 'TrainingAccess'}]
-  },
+  }
   roles: [{ type: String, default: []}]
 });
 

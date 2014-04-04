@@ -11,7 +11,6 @@ angular.module( project.name, [
   'ui.bootstrap',
   'ui.bootstrap.tpls',
   'ngCookies',
-  'common-directives',
   'ngSanitize',
   'ui.jq',
   'xeditable',
@@ -54,4 +53,6 @@ angular.module( project.name, [
 
 })
 .constant('version', require('../package.json').version)
+.directive('scrollOnClick', require('./directives/directive.scrollonclick.js'))
+.directive('scrollTopOnClick', require('./directives/directive.scrolltoponclick'))
 .factory('userService', require('./factories/factory.user.js'));
