@@ -11,9 +11,6 @@ module.exports = angular.module(project.name + '.home', [
     controller: 'HomeCtrl',
     templateUrl: '/home/home.tpl.html',
     resolve: {
-      data: function (exerciseService) {
-        return exerciseService.getDashData();
-      },
       user: function (userService) {
         return userService.get();
       }

@@ -48,6 +48,7 @@
     "randpass": "0.1.0",
     "require-dir": "~0.1.x",
     "redis": "~0.10.x",
+    "socket.io": "0.9.16",
     "validator": "~3.2.x",
     "wrench": "~1.5.4",
     "xml2js": "~0.4.x",

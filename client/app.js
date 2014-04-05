@@ -14,12 +14,11 @@ angular.module( project.name, [
   'ngSanitize',
   'ui.jq',
   'xeditable',
-  // require('./account').name,
+  require('./account').name,
   // require('./admin').name,
-  require('./auth').name
-  //,
-  // require('./home').name,
-  // require('./register').name
+  require('./auth').name,
+  require('./home').name,
+  require('./register').name
 ])
 
 .config( function myAppConfig ($urlRouterProvider, $locationProvider, $httpProvider) {
@@ -55,4 +54,5 @@ angular.module( project.name, [
 .constant('version', require('../package.json').version)
 .directive('scrollOnClick', require('./directives/directive.scrollonclick.js'))
 .directive('scrollTopOnClick', require('./directives/directive.scrolltoponclick'))
-.factory('userService', require('./factories/factory.user.js'));
+.factory('userService', require('./factories/factory.user.js'))
+.factory('socket', require('./factories/factory.socket.js'));

@@ -26,7 +26,7 @@ function configureBodyParser (server) {
       return yield next;
     }
 
-    this.req.body = yield parse(this, { limit: '25kb' });
+    this.req.body = yield parse(this, { limit: '10kb' });
     yield next;
   });
 }

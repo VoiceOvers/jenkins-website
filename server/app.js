@@ -14,7 +14,6 @@ var requireDir = require('require-dir');
 
 var koa = require('koa');
 
-console.log(process.env.NODE_ENV);
 //Find out which environment we are preparing for.
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require(path.join(path.normalize(__dirname + '/../config'), process.env.NODE_ENV));
@@ -38,7 +37,8 @@ var app = {
       getServer: function () {
         return this.koaServer;
       }
-    }
+    },
+    socketio: null
   }
 };
 
@@ -90,8 +90,13 @@ app.run = function () {
   var port = process.env.PORT || app.project.server.port || 3000;
   app.servers.http.httpServer = http.createServer(app.servers.koa.getServer().callback()).listen(port);
 
+  app.lib.socketio.run(app);
+
     //Register our routes
   app.routes.register(app);
+
+  require('./socketio').registerSystems(app);
+  require('./socketio').registerClients(app);
 
   return app.servers.http.getServer();
 };

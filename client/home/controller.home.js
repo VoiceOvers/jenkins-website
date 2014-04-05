@@ -1,34 +1,20 @@
-module.exports = function ($scope, data) {
+module.exports = function ($scope, socket, user) {
   $scope.alerts = [];
 
-  var rowCounter = 0;
-  var currentGroup = { items: [] };
-  $scope.groups = [currentGroup];
-  $scope.cssMaps = {
-    wrapper: ['bg-alizarin', 'bg-sun-flower', 'bg-peter-river', 'bg-turquoise'],
-    links: ['color-pomegranate', 'color-orange', 'color-belize-hole', 'color-green-sea']
-  };
-
-  _.each(data.courses, function (course, index) {
-    if (rowCounter++ > 3) {
-      rowCounter = 1;
-      currentGroup = { items: [] };
-      $scope.groups.push(currentGroup);
+  socket.emit('state:get', function (result) {
+    if(result !== '200') {
+      $scope.toggleAlert('')
     }
-
-    currentGroup.items.push(course);
-    course.type = rowCounter - 1;
-    course.pid = index;
   });
 
-  $scope.structuredExercise = function () {
+  socket.on('state:status', function (data, cb) {
 
-  };
+  });
 
-  $scope.nonStructuredExercise = function () {
-
-  };
-
+  socket.on('state:change', function (data, cb) {
+    console.log(data);
+    cb('received');
+  });
   $scope.toggleAlert = function (message, error) {
     $scope.alerts.push({message: message, type: error ? 'danger' : 'success'});
   };
