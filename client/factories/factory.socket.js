@@ -1,10 +1,11 @@
 'use strict';
 
-var project = require('../../project.json');
+var project = require('../../project.json'),
+    io = require('socket.io-client');
 
 module.exports = function ($rootScope) {
 
-  var socket = io.connect('localhost:3000/clients');
+  var socket = io.connect('/clients');
 
   function on(eventName, callback) {
     socket.on(eventName, function () {

@@ -35,7 +35,7 @@
     "lodash": "~2.4.1",
     "mandrill-api": "1.0.x",
     "mkdirp": "~0.3.5",
-    "mongoose": "~3.8.3",
+    "mongoose": "git+https://github.com/LearnBoost/mongoose.git",
     "mongoose-findorcreate": "~0.1.x",
     "mongoose-timestamp": "~0.2.x",
     "mongoose-types": "~1.0.x",
@@ -48,7 +48,7 @@
     "randpass": "0.1.0",
     "require-dir": "~0.1.x",
     "redis": "~0.10.x",
-    "socket.io": "0.9.16",
+    "socket.io": "~0.9.16",
     "validator": "~3.2.x",
     "wrench": "~1.5.4",
     "xml2js": "~0.4.x",
@@ -70,7 +70,8 @@
     "mold-source-map": "~0.3.0",
     "gulp-util": "~2.2.14",
     "gulp-livereload": "~1.2.0",
-    "tiny-lr": "0.0.5"
+    "tiny-lr": "0.0.5",
+    "socket.io-client": "~0.9.16"
   },
   "devDependencies": {
     "chai": "1.9.0",

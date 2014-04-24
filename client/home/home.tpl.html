@@ -1,11 +1,21 @@
 <alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
 
 <section>
+  <h5>{{system.name}}</h5>
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="zones in user.zones">
-      <h5>{{zone.name}}</h5>
+    <li class="list-group-item" ng-repeat="zone in system.zones">
+      <h2>{{zone.name}}</h2>
 
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="component in zone.components">
+          <h5>{{component.name}}</h5>
+          <button type="button" class="btn btn-primary" ng-model="component.status.state" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleComponent(component, zone)">
+        Single Toggle
+    </button>
+        </li>
+      </ul>
 
     </li>
   </ul>
+
 </section>

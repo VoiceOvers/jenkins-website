@@ -14,27 +14,6 @@ exports.impl.putOnePassword = function *(id, data) {
   return;
 }
 
-exports.impl.putOnePayment = function *(id, data) {
-  var customer = yield app.controllers.stripe.impl.putCustomer(data.id, {
-    card: {
-      number: data.cardNum,
-      exp_month: data.expMonth,
-      exp_year: data.expYear
-    }
-  });
-  var card = customer.cards.data[0];
-  var payment = {
-    stripe: {
-      id: customer.id,
-      cardNum: '****-****-****-' + card.last4,
-      expMonth: card['exp_month'],
-      expYear: card['exp_year']
-    }
-  };
-  var user = yield app.models.User.findByIdAndUpdate(id, payment).exec();
-  return user;
-};
-
 // /api/users
 exports.deleteOne = function *(next) {
   try {
@@ -55,16 +34,15 @@ exports.getOne = function *(next) {
   var user;
   try {
     user = yield app.models.User.findById(this.params.id)
-      .select('name email roles stripe training accessToken auth')
-      .populate('training.access')
+      .select('name email roles accessToken auth')
       .lean()
       .exec();
-    user = yield app.models.User.populate(user, {path: 'training.access.content', model: 'Training'});
+
     delete user.auth.local.password;
     this.body = user;
     this.status = 200;
   } catch (e) {
-    this.throw(500, e);
+    this.throw(e, 500);
   }
   yield next;
 };

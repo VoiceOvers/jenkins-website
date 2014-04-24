@@ -38,7 +38,13 @@ var app = {
         return this.koaServer;
       }
     },
-    socketio: null
+    socketio: {
+      socketServer: null,
+      getServer: function () {
+        return this.socketServer;
+      }
+    }
+
   }
 };
 

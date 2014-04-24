@@ -1,5 +1,5 @@
 /*
- * server/models/Zone.js
+ * server/models/HistoryLog.js
  */
 
 'use strict';
@@ -13,23 +13,16 @@ var mongooseTypes = require('mongoose-types'),
 //Additional types for mongoose
 mongooseTypes.loadTypes(mongoose);
 
-var Component = require('./Component'),
-    HistorySchema = require('./History');
-
 // Schema
 var schema = new mongoose.Schema({
-  components: [ Component.schema ],
   created: {type: Date, default: Date.now()},
+  description: {type: String, required: true}, //Describe what happened.
   flags: [{type: String, default: []}],
-  history: [ HistorySchema.schema ],
-  permissions: {
-    active: {type: Boolean, default: false}, //Is there access restrictions.
-    access: [{type: mongoose.Schema.ObjectId, ref: 'User'}] //Users With Access
-  },
-  name: {type: String},
+  meta: { type: mongoose.Schema.Types.Mixed }, //Meta Data on connection and type
+  trigger: {type: String, enum: ['Tinkerbell', 'Website', 'Phone Application'], required: true} //What did this come from.
 });
 
 schema.plugin(mongooseTimestamp);
 
 // Public API
-exports = module.exports = mongoose.model('Zone', schema);
+exports = module.exports = mongoose.model('History', schema);

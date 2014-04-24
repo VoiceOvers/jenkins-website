@@ -45,39 +45,7 @@ exports.impl.lostPasswordPOST = function *(username) {
 
 };
 
-exports.staticRegister = function *() {
-  try {
 
-    console.log(this.req.body.username);
-    console.log(this.req.body.firstName);
-    console.log(this.req.body.lastName);
-    console.log(this.req.body.password);
-
-    var user = yield exports.impl.registerPOST(
-      this.req.body.username,
-      this.req.body.firstName,
-      this.req.body.lastName,
-      this.req.body.password);
-
-    app.controllers.emails.impl.sendWelcome(
-      this.req.body.username,
-      this.req.body.firstName + ' ' + this.req.body.lastName);
-
-    yield app.lib.passport.authenticate('local', {
-      badRequestMessage: 'Invalid input'
-    });
-
-    var temp = {
-      _id: user._id,
-      name: user.name.full
-    };
-
-    this.redirect('/app/#!/home');
-  } catch (e) {
-    console.log(e);
-    this.redirect('/app/#!/register');
-  }
-};
 
 exports.loginPOST = function *(next) {
 
@@ -133,9 +101,9 @@ exports.registerPOST = function * (next) {
       this.req.body.lastName,
       this.req.body.password);
 
-    app.controllers.emails.impl.sendWelcome(
-      this.req.body.username,
-      this.req.body.firstName + ' ' + this.req.body.lastName);
+    // app.controllers.emails.impl.sendWelcome(
+    //   this.req.body.username,
+    //   this.req.body.firstName + ' ' + this.req.body.lastName);
 
     yield app.lib.passport.authenticate('local', {
       badRequestMessage: 'Invalid input'

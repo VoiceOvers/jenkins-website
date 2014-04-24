@@ -13,15 +13,21 @@ var mongooseTypes = require('mongoose-types'),
 //Additional types for mongoose
 mongooseTypes.loadTypes(mongoose);
 
+var Zone = require('./Zone');
+
 // Schema
 var schema = new mongoose.Schema({
-  access: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
+  access: {
+    owner: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    users: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
+  },
   flags: [{type: String, default: []}],
-  zones: [{type: mongoose.Schema.ObjectId, ref: 'Zone'}],
+  name: {type: String, default: 'My Jenkins System'},
   socket: {
-    mostRecentCommunication: {type: Date, default: Date.now()},
-  }
-});
+    mostRecentModuleCommunication: {type: Date, default: Date.now()},
+  },
+  zones: [ Zone.schema ]
+}, {_id: true});
 
 schema.plugin(mongooseTimestamp);
 

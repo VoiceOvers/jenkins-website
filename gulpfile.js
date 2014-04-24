@@ -41,12 +41,12 @@ gulp.task('lint', function () {
 
   gulp.src(client_paths)
     .pipe($.cached('linting-client'))
-    .pipe($.jshint())
+    .pipe($.jshint(project.path.client + '/.jshintrc'))
     .pipe($.jshint.reporter('jshint-stylish'));
 
   gulp.src(project.path.server + '/**/*.js')
     .pipe($.cached('linting-server'))
-    .pipe($.jshint())
+    .pipe($.jshint(project.path.server + '/.jshintrc'))
     .pipe($.jshint.reporter('jshint-stylish'));
 });
 
@@ -97,7 +97,7 @@ gulp.task('dependencies', function () {
     project.path.bower + '/angular-bootstrap/ui-bootstrap-tpls.js',
     project.path.bower + '/chosen/chosen.jquery.js',
     project.path.bower + '/angular-xeditable/dist/js/xeditable.js',
-    project.path.bower + '/angular-masonry/angular-masonry.js',
+    project.path.bower + '/angular-masonry/angular-masonry.js'
   ])
   .pipe($.concat('deps.js'))
   .pipe(gulp.dest(project.path.client + '/js/'));

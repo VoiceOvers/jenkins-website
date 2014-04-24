@@ -10,23 +10,29 @@ var mongoose = require('mongoose');
 var mongooseTypes = require('mongoose-types'),
     mongooseTimestamp = require('mongoose-timestamp');
 
+var HistorySchema = require('./History');
+
 //Additional types for mongoose
 mongooseTypes.loadTypes(mongoose);
 
 // Schema
 var schema = new mongoose.Schema({
-  access: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
-  flags: [{type: String, default: []}],
-  zones: [{type: mongoose.Schema.ObjectId, ref: 'Zone'}],
-  socket: {
-    mostRecentCommunication: {type: Date, default: Date.now()},
+  flags: [{type: String, default: []}], //Type of Component, Etc.
+  history: [ HistorySchema.schema ],
+  status: {
+    active: {type: Boolean, default: true}, //Have we received updates recently.
+    max: {type: Number}, //Maximum Interval Position
+    min: {type: Number}, //Minimum Interval Position
+    position: {type: Number}, //Current Interval Position
+    state: {type: Boolean, default: false}, //Boolean to show ON/OFF status
+  },
+  name: {type: String, required: true}, //Name of Component
+  zigbee: {
+    networkId: {type: String, required: true} //Id of component in the network for ZigBee
   }
 });
 
 schema.plugin(mongooseTimestamp);
 
-// Model
-var model = mongoose.model('Component', schema);
-
 // Public API
-exports = module.exports = model;
+exports = module.exports = mongoose.model('Component', schema);

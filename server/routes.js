@@ -12,13 +12,13 @@ exports.register = function (app) {
 
   s.get('/api/tester', c.helper.tester);
 
-  //Admin Data
-  s.get('/api/admin/data', ensure.admin, c.admin.getAdminData);
+  // //Admin Data
+  // s.get('/api/admin/data', ensure.admin, c.admin.getAdminData);
 
-  //Dash Data
-  s.get('/api/dash/data', ensure.user, c.home.getDashData);
+  // //Dash Data
+  // s.get('/api/dash/data', ensure.user, c.home.getDashData);
 
-  //Authentication
+  // //Authentication
   s.post('/api/login', c.auth.loginPOST);
   s.post('/api/logout', c.auth.logoutPOST);
   s.post('/api/register', c.auth.registerPOST);
@@ -38,6 +38,38 @@ exports.register = function (app) {
 
   // Auth
   s.post('/api/lost-password', c.auth.lostPasswordPOST);
+
+  // s.get('/api/helper', function *(next) {
+  //   var system = new app.models.System({
+  //     access: {
+  //       owner: '535837b58975f34d908d0d96'
+  //     },
+  //     flags: [ 'access' ],
+  //     name: 'First Revision Jenkins Series System',
+  //     zones: []
+  //   });
+
+  //   system = yield system.save();
+  //   system.zones.push({
+  //       name: 'Upstairs Bathroom',
+  //       components: [{
+  //         flags: [ 'LightSwitch'],
+  //         name: 'Vanity LightSwitch',
+  //         zigbee: {
+  //           networkId: 'ComponentNetworkID'
+  //         }
+  //       }]
+  //       });
+  //   system.save();
+  //   this.status = 200;
+  //   // var system = yield app.models.System.findOne({})
+  //   //   .exec();
+
+
+
+  //   // system.zones[0].name = system.zones[0].name + ' Updated';
+  //   // system.save();
+  // });
 
   //Social Networking (TODO when passport is updated)
   // s.get('/auth/facebook', c.auth.facebook);

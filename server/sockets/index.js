@@ -13,7 +13,7 @@ function _registerClient(socket) {
     _onInfo(socket, data);
   });
 
-  require('./clients').register(socket);
+  require('./clients').impl.register(socket);
 }
 
 function onClientConnect(socket) {
@@ -30,7 +30,7 @@ function _registerSystem(socket) {
     _onInfo(socket, data);
   });
 
-  require('./system').register(socket);
+  require('./system').impl.register(socket);
 }
 
 function onSystemConnect(socket) {

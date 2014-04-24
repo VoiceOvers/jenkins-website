@@ -1,4 +1,4 @@
-module.exports = function ( $cookies, $http, $state, $q) {
+module.exports = function ( $cookies, $q, $http) {
 
   function forgot(username) {
     return $http.post('/api/lost-password', {email: username});
@@ -17,10 +17,6 @@ module.exports = function ( $cookies, $http, $state, $q) {
       }, deferred.reject);
 
     return deferred.promise;
-  }
-
-  function getCategories() {
-    return $http.get('/api/categories');
   }
 
   function logout() {
@@ -62,23 +58,17 @@ module.exports = function ( $cookies, $http, $state, $q) {
     return $http.put('/api/users/password/' + user._id, {password: password});
   }
 
-  function updatePayment(user) {
-    return $http.put('/api/users/payment/' + user._id, user);
-  }
-
   var output = {
     _id: $cookies['user._id'],
     name: $cookies['user.name.full'],
     csrf: $cookies.csrf,
-    forgot: forgot,
     get: get,
-    getCategories: getCategories,
+    forgot: forgot,
     logout: logout,
     login: login,
     register: register,
     update: update,
-    updatePassword: updatePassword,
-    updatePayment: updatePayment
+    updatePassword: updatePassword
   };
 
   return output;
