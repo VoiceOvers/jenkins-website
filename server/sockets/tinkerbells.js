@@ -18,25 +18,26 @@ function wrapEvent(fn, data, socket, emitEvent) {
   })();
 }
 
+exports.impl = {};
 /*
   Register the socket to receive and emit events to connected clients
   from the website/phone application.
 
   Received Events:
-  client:system:state:{put, get}
+  tinkerbell:system:state:{put, get}
 
 
   Emitted Events:
-  client:system:state:{status}
+  tinkerbell:system:state:{status}
 
  */
-exports.impl = {};
-exports.impl.register = function (socket) {
-  socket.on('client:system:component:put', function (data, cb) {
-    wrapEvent(app.controllers.systems.impl.systemComponentPUT, data, socket, 'client:system:state:status');
+exports.impl.register = function () {
+  socket.on('tinkerbell:system:component:put', function (data, cb) {
+    wrapEvent(app.controllers.systems.impl.systemComponentPUT, data, socket, 'tinkerbell:system:state:status');
   });
 
-  socket.on('client:system:state:get', function (data, cb) {
-    wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'client:system:state:status');
+  socket.on('tinkerbell:system:state:get', function (data, cb) {
+    wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'tinkerbell:system:state:status');
   });
 };
+

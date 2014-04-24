@@ -10,7 +10,7 @@ module.exports = function ($scope, socket, user) {
 
   function refreshSystem () {
     //Ask Cloud Server to send Status of System.
-    socket.emit('system:state:get', {type: 'User', user: user});
+    socket.emit('client:system:state:get', {type: 'User', user: user});
   }
 
   socket.on('error', function (data) {
@@ -18,7 +18,7 @@ module.exports = function ($scope, socket, user) {
   });
 
   //Event for Cloud Server to send Current Status of System.
-  socket.on('system:state:status', function (data) {
+  socket.on('client:system:state:status', function (data) {
     if(data.length) {
       $scope.system = data;
       $scope.system = $scope.system[0];
@@ -33,9 +33,8 @@ module.exports = function ($scope, socket, user) {
   };
 
   $scope.toggleComponent = function (component, zone) {
-    console.log(component);
     //Emit a socket event to Cloud Server, telling it a component here has been changed.
-    socket.emit('system:component:put', {component: component, system: $scope.system, zone: zone});
+    socket.emit('client:system:component:put', {component: component, system: $scope.system, zone: zone});
   };
 
   //Initialize on first state load.

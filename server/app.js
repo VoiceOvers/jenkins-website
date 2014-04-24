@@ -101,7 +101,7 @@ app.run = function () {
     //Register our routes
   app.routes.register(app);
 
-  require('./socketio').registerSystems(app);
+  require('./socketio').registerTinkerbells(app);
   require('./socketio').registerClients(app);
 
   return app.servers.http.getServer();

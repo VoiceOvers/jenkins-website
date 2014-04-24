@@ -21,35 +21,48 @@ function onClientConnect(socket) {
 }
 
 function onClientDisconnect(/*socket*/) {
-  //...
+  //Log to Mongo
+}
+
+function onClientMessage(socket, packet) {
+  // if (packet.type === 'heartbeat') {
+  //   // ...
+  // }
+
+  //TODO Log to mongo
 }
 
 //System socket listeners
-function _registerSystem(socket) {
+function _registerTinkerbell(socket) {
   socket.on('info', function (data) {
     _onInfo(socket, data);
   });
 
-  require('./system').impl.register(socket);
+  require('./tinkerbells').impl.register(socket);
 }
 
-function onSystemConnect(socket) {
-  _registerSystem(socket);
+function onTinkerbellConnect(socket) {
+  _registerTinkerbell(socket);
 }
 
-function onSystemDisconnect(/*socket*/) {
-  //
+function onTinkerbellDisconnect(/*socket*/) {
+  //TODO log to Mongo
 }
 
-function onMessage(/*socket, packet*/) {
+function onTinkerbellMessage(socket, packet) {
   // if (packet.type === 'heartbeat') {
   //   // ...
   // }
+
+  //TODO Log to mongo
 }
+
+
 
 // Public API
 exports.onClientConnect = onClientConnect;
 exports.onClientDisconnect = onClientDisconnect;
-exports.onSystemConnect = onSystemConnect;
-exports.onSystemDisconnect = onSystemDisconnect;
-exports.onMessage = onMessage;
+exports.onClientMessage = onClientMessage;
+exports.onTinkerbellConnect = onTinkerbellConnect;
+exports.onTinkerbellDisconnect = onTinkerbellDisconnect;
+exports.onTinkerbellMessage = onTinkerbellMessage;

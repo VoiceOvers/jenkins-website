@@ -10,13 +10,13 @@ var _socketio = null;
 var _clients,
     _systems;
 
-exports.registerSystems = function (app) {
+exports.registerTinkerbells = function (app) {
   _socketio = app.servers.socketio.getServer();
 
   _socketio.set('log level', 2);
 
   _systems = _socketio
-    .of('/systems')
+    .of('/tinkerbells')
     .on('connection', function (socket) {
       // Attach variables.
       socket.address = socket.handshake.address.address + ':' +
@@ -24,23 +24,23 @@ exports.registerSystems = function (app) {
       socket.connectedAt = new Date();
 
     // Call onMessage.
-    // (function () {
-    //   var onMessage = socket.manager.transports[socket.id].onMessage;
-    //   socket.manager.transports[socket.id].onMessage = function (packet) {
-    //     onMessage.apply(this, arguments);
-    //     sockets.onMessage(socket, packet);
-    //   };
-    // }());
+    (function () {
+      var onMessage = socket.manager.transports[socket.id].onMessage;
+      socket.manager.transports[socket.id].onMessage = function (packet) {
+        onMessage.apply(this, arguments);
+        sockets.onTinkerbellMessage(socket, packet);
+      };
+    }());
 
       // Call onDisconnect.
       socket.on('disconnect', function () {
-        sockets.onSystemDisconnect(socket);
+        sockets.onTinkerbellDisconnect(socket);
         console.info('[%s] DISCONNECTED', socket.address);
       });
 
       // Call onConnect.
       sockets.onSystemConnect(socket);
-        console.info('[%s] CONNECTED', socket.address);
+      console.info('[%s] CONNECTED', socket.address);
     });
 };
 
@@ -56,6 +56,14 @@ exports.registerClients = function (app) {
       socket.address = socket.handshake.address.address + ':' +
                        socket.handshake.address.port;
       socket.connectedAt = new Date();
+
+      (function () {
+        var onMessage = socket.manager.transports[socket.id].onMessage;
+        socket.manager.transports[socket.id].onMessage = function (packet) {
+          onMessage.apply(this, arguments);
+          sockets.onClientMessage(socket, packet);
+        };
+      }());
 
       // Call onDisconnect.
       socket.on('disconnect', function () {

@@ -9,9 +9,7 @@
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="component in zone.components">
           <h5>{{component.name}}</h5>
-          <button type="button" class="btn btn-primary" ng-model="component.status.state" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleComponent(component, zone)">
-        Single Toggle
-    </button>
+          <button type="button" class="btn btn-primary" ng-model="component.status.state" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleComponent(component, zone)">Single Toggle</button>
         </li>
       </ul>
 
