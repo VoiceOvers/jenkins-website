@@ -47,6 +47,15 @@ exports.impl.systemStateGET = function *(data) {
     system = yield app.models.System.findById(systemId)
       .lean()
       .exec();
+  } else if(data.type === 'Tinkerbell') {
+    var moduleId = data.module._id;
+    if(!moduleId) {
+      throw new Error('Missing Module Id For System Query.');
+    }
+
+    system = yield app.models.System.findOne({})
+      .where('moduleId').equals(moduleId)
+      .exec();
   } else {
     throw new Error('Unknown Query Type For System.');
   }

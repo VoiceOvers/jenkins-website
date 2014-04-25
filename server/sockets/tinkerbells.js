@@ -9,7 +9,7 @@ function wrapEvent(fn, data, socket, emitEvent) {
       var obj = yield fn(data);
     } catch (e) {
       console.log(e);
-      socket.emit('error', e);
+      socket.emit('error', e.toString());
     }
 
     if(socket && emitEvent) {
@@ -31,12 +31,13 @@ exports.impl = {};
   tinkerbell:system:state:{status}
 
  */
-exports.impl.register = function () {
+exports.impl.register = function (socket) {
   socket.on('tinkerbell:system:component:put', function (data, cb) {
     wrapEvent(app.controllers.systems.impl.systemComponentPUT, data, socket, 'tinkerbell:system:state:status');
   });
 
   socket.on('tinkerbell:system:state:get', function (data, cb) {
+    socket.moduleId = data.module._id;
     wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'tinkerbell:system:state:status');
   });
 };

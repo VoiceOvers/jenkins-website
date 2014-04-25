@@ -22,10 +22,8 @@ var schema = new mongoose.Schema({
     users: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
   },
   flags: [{type: String, default: []}],
+  moduleId: {type: String, required: true},
   name: {type: String, default: 'My Jenkins System'},
-  socket: {
-    mostRecentModuleCommunication: {type: Date, default: Date.now()},
-  },
   zones: [ Zone.schema ]
 }, {_id: true});
 

@@ -10,6 +10,7 @@ module.exports = function ($scope, socket, user) {
 
   function refreshSystem () {
     //Ask Cloud Server to send Status of System.
+    console.log(Date.now());
     socket.emit('client:system:state:get', {type: 'User', user: user});
   }
 
@@ -19,12 +20,11 @@ module.exports = function ($scope, socket, user) {
 
   //Event for Cloud Server to send Current Status of System.
   socket.on('client:system:state:status', function (data) {
+    console.log(Date.now());
     if(data.length) {
       $scope.system = data;
       $scope.system = $scope.system[0];
     }
-
-
   });
 
   $scope.toggleAlert = function (message, error) {

@@ -8,14 +8,14 @@ var sockets = require('./sockets');
 
 var _socketio = null;
 var _clients,
-    _systems;
+    _tinkerbells;
 
 exports.registerTinkerbells = function (app) {
   _socketio = app.servers.socketio.getServer();
 
   _socketio.set('log level', 2);
 
-  _systems = _socketio
+  _tinkerbells = _socketio
     .of('/tinkerbells')
     .on('connection', function (socket) {
       // Attach variables.
@@ -39,7 +39,7 @@ exports.registerTinkerbells = function (app) {
       });
 
       // Call onConnect.
-      sockets.onSystemConnect(socket);
+      sockets.onTinkerbellConnect(socket);
       console.info('[%s] CONNECTED', socket.address);
     });
 };
