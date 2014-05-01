@@ -20,7 +20,7 @@ exports.impl.sendCallRequest = function (sender, recipient, message) {
   twilio.makeCall({
       to: recipient,
       from: '+19858821264',
-      url: 'http://leeroyjenkins.herokuapp.com/twiml.php'
+      url: 'http://leeroyjenkins.herokuapp.com/twilio.xml'
   }, function(err, responseData) {
 
       //executed when the call has been initiated.
