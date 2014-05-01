@@ -77,6 +77,26 @@ exports.register = function (app) {
 
     this.response = xml;
     this.status = 200;
+    yield next;
+  });
+
+  s.get('/api/twiml', function *(next) {
+    var builder = require('xmlbuilder');
+
+    // var xml = builder.create({
+    //   response: {
+    //     say: {
+    //       '#text': 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.'
+    //     }
+    //   }
+    // });
+  var xml = builder.create('response')
+      .ele('say', 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.')
+    .end();
+    this.set('content-type', 'text/xml');
+    this.body = xml;
+    this.status = 200;
+    yield next;
   });
 
 
