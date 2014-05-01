@@ -101,8 +101,8 @@ exports.register = function (app) {
 
   s.post('/api/twiml', function *(next) {
     var builder = require('xmlbuilder');
-
-    var name = _.where(numbers, {number: this.req.body.Called}).name;
+    var _ = require('lodash');
+    var name = _.find(numbers, {number: this.req.body.Called}).name;
     var xml = builder.create('Response')
       .ele('Say', name + ' this is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.')
       .end();
