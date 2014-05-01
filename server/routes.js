@@ -40,7 +40,7 @@ exports.register = function (app) {
     { number: '+16092130493', name: 'Stephen Kuzy'},
     { number: '+12257726327', name: 'Andrew Kemp'},
     { number: '+15125730600', name: 'Ivan Kubacak'},
-    { number: '+15043436424', name: 'Brittany Fields'}
+    { number: '+15043436424', name: 'Brittany Fields'},
     { number: '+19852372314', name: 'Jeff Brown'},
     { number: '+16825524485', name: 'Edward Lynch'},
     { number: '+15042895391', name: 'Jerry Yan'},
