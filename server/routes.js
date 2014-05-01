@@ -44,7 +44,13 @@ exports.register = function (app) {
     { number: '+19852372314', name: 'Jeff Brown'},
     { number: '+16825524485', name: 'Edward Lynch'},
     { number: '+15042895391', name: 'Jerry Yan'},
-    { number: '+19857900355', name: 'Brittany Dupre'}
+    { number: '+19857900355', name: 'Brittany Dupre'},
+    { number: '+12259109030', name: 'Paul'},
+    { number: '+12252901572', name: 'Sean'},
+    { number: '+18436187126', name: 'Sarah'},
+    { number: '+19018711656', name: 'Megyn'},
+    { number: '+15042324866', name: 'Boa'},
+    { number: '+12255710114', name: 'Jason Smith'}
   ];
 
   s.get('/api/hello', function *(next) {
