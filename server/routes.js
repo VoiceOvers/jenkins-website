@@ -37,7 +37,7 @@ exports.register = function (app) {
     // { number: '+16825524485', name: 'Edward Lynch'},
     // { number: '+15042895391', name: 'Jerry Yan'},
     // { number: '+19857900355', name: 'Brittany Dupre'}
-    { number: '+19857072042', name: 'Samantha Wyatt'}
+    { number: '+19857885122', name: 'Bryce Jacobs'}
   ];
 
   // var numbers = [
@@ -102,9 +102,9 @@ exports.register = function (app) {
   s.post('/api/twiml', function *(next) {
     var builder = require('xmlbuilder');
 
-    console.log(this.req.body);
+    var name = _.where(numbers, {number: this.req.body.Called}).name;
     var xml = builder.create('Response')
-      .ele('Say', 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.')
+      .ele('Say', name + ' this is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.')
       .end();
 
     this.set('content-type', 'text/xml');
