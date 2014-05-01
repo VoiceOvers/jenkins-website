@@ -23,12 +23,12 @@ exports.impl.systemStateGET = function *(data) {
     system = yield [
       app.models.System.find({})
         .where('access.owner').equals(userId)
-        .select('_id access flags zones')
+        .select('_id access flags zones status')
         .lean()
         .exec(),
       app.models.System.find({})
         .where('access.users').in([ userId ])
-        .select('_id access flags zones')
+        .select('_id access flags zones status')
         .lean()
         .exec() ];
 

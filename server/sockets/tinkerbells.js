@@ -40,5 +40,9 @@ exports.impl.register = function (socket) {
     socket.moduleId = data.module._id;
     wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'tinkerbell:system:state:status');
   });
+
+  socket.on('tinkerbell:system:state:emergency', function (data) {
+    app.controllers.twilio.sendTextMessage(null, '+19852372314', 'Hey budddyyy');
+  });
 };
 

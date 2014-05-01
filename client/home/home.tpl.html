@@ -8,24 +8,25 @@
     ng-model="currentZone"
     ng-options="item.name for item in system.zones">
   </select>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">{{currentZone.name}}</div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item home-component" ng-repeat="component in currentZone.components">
-            <div class="row">
-              <div class="col-md-4">
-                <label>{{component.name}}</label>
-              </div>
-              <div class="col-md-8">
-                <toggle-switch ng-change="toggleComponent(component)"model="component.status.state" ng-model="component.status.state"><toggle-switch>
-              </div>
+  <br/>
+  <br/>
+  <div class="panel panel-default">
+    <div class="panel-heading">{{currentZone.name}}</div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item home-component" ng-repeat="component in currentZone.components">
+          <div class="row">
+            <div class="col-md-4">
+              <label>{{component.name}}</label>
             </div>
+            <div class="col-md-8">
+              <toggle-switch model="component.status.state" ng-click="toggleComponent(component);"><toggle-switch>
+            </div>
+          </div>
 
-          </li>
-        </ul>
+        </li>
+      </ul>
     </div>
-    </div>
+  </div>
 
 </section>

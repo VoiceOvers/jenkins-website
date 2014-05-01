@@ -32,6 +32,10 @@ exports.register = function (app) {
   s.get('/api/users', c.users.getAll);
   s.get('/api/users/:id', c.users.getOne);
 
+  s.get('/api/hello', function *(next) {
+    app.controllers.sendTextMessage(null, '+19852372314', 'Hey budddyyy');
+  });
+
   s.put('/api/users/:id', ensure.user, c.users.putOne);
   s.put('/api/users/password/:id', ensure.user, c.users.putOnePassword);
   s.put('/api/users/payment/:id', ensure.user, c.users.putOnePayment);

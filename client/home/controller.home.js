@@ -34,16 +34,10 @@ module.exports = function ($scope, socket, user) {
   };
 
   $scope.toggleComponent = function (component) {
-    console.log('here');
     //Emit a socket event to Cloud Server, telling it a component here has been changed.
     socket.emit('client:system:component:put', {component: component, system: $scope.system, zone: $scope.currentZone});
   };
 
   //Initialize on first state load.
   refreshSystem();
-
-  $scope.$watchCollection('zones', function (newvar, oldvar) {
-    console.log(newvar);
-    console.log(oldvar);
-  });
 };
