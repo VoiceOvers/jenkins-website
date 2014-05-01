@@ -66,6 +66,7 @@ exports.register = function (app) {
   // Auth
   s.post('/api/lost-password', c.auth.lostPasswordPOST);
 
+
   // s.get('/api/helper', function *(next) {
   //   var system = new app.models.System({
   //     access: {
