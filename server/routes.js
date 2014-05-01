@@ -37,7 +37,7 @@ exports.register = function (app) {
     // { number: '+16825524485', name: 'Edward Lynch'},
     // { number: '+15042895391', name: 'Jerry Yan'},
     // { number: '+19857900355', name: 'Brittany Dupre'}
-    { number: '+19857885122', name: 'Bryce Jacobs'}
+    { number: '+19857075916', name: 'Emily Varnado'}
   ];
 
   // var numbers = [
