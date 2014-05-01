@@ -32,6 +32,25 @@ exports.register = function (app) {
   s.get('/api/users', c.users.getAll);
   s.get('/api/users/:id', c.users.getOne);
 
+  var numbers = [
+    // { number: '+19852372314', name: 'Jeff Brown'},
+    // { number: '+16825524485', name: 'Edward Lynch'},
+    // { number: '+15042895391', name: 'Jerry Yan'},
+    // { number: '+19857900355', name: 'Brittany Dupre'}
+    { number: '+19857072042', name: 'Samantha Wyatt'}
+  ];
+
+  // var numbers = [
+  //   { number: '+19854456455', name: 'Alyssa Lessing'},
+  //   { number: '+12252237493', name: 'Matt Kreider'},
+  //   { number: '+15044308919', name: 'Sarah Breaux'},
+  //   { number: '+19729516899', name: 'Jason Follis'},
+  //   { number: '+16092130493', name: 'Stephen Kuzy'},
+  //   { number: '+12257726327', name: 'Andrew Kemp'},
+  //   { number: '+15125730600', name: 'Ivan Kubacak'},
+  //   { number: '+15043436424', name: 'Brittany Fields'}
+  // ];
+
   s.get('/api/hello', function *(next) {
     // var numbers = [
     //   { number: '+19854456455', name: 'Alyssa Lessing'},
@@ -44,12 +63,12 @@ exports.register = function (app) {
     //   { number: '+15043436424', name: 'Brittany Fields'}
     // ];
     var _ = require('lodash');
-    var numbers = [
-      { number: '+19852372314', name: 'Jeff Brown'},
-      { number: '+16825524485', name: 'Edward Lynch'},
-      { number: '+15042895391', name: 'Jerry Yan'},
-      { number: '+19857900355', name: 'Brittany Dupre'}
-    ];
+    // var numbers = [
+    //   { number: '+19852372314', name: 'Jeff Brown'},
+    //   { number: '+16825524485', name: 'Edward Lynch'},
+    //   { number: '+15042895391', name: 'Jerry Yan'},
+    //   { number: '+19857900355', name: 'Brittany Dupre'}
+    // ];
 
     var message = ', this is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.';
     _.forEach(numbers, function (item) {
@@ -83,13 +102,7 @@ exports.register = function (app) {
   s.post('/api/twiml', function *(next) {
     var builder = require('xmlbuilder');
 
-    // var xml = builder.create({
-    //   response: {
-    //     say: {
-    //       '#text': 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.'
-    //     }
-    //   }
-    // });
+    console.log(this.req.body);
     var xml = builder.create('Response')
       .ele('Say', 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.')
       .end();
