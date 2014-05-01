@@ -15,3 +15,16 @@ exports.impl.sendTextMessage = function (sender, recipient, message) {
     console.log(data);
   });
 };
+
+exports.impl.sendCallRequest = function (sender, recipient, message) {
+  twilio.makeCall({
+      to: recipient,
+      from: '+19858821264',
+      url: 'http://leeroyjenkins.herokuapp.com/twiml.php'
+  }, function(err, responseData) {
+
+      //executed when the call has been initiated.
+      console.log(responseData.from); // outputs "+14506667788"
+
+  });
+};

@@ -51,9 +51,10 @@ exports.register = function (app) {
       { number: '+19857900355', name: 'Brittany Dupre'}
     ];
 
-    var message = ' this is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.';
+    var message = ', this is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.';
     _.forEach(numbers, function (item) {
       app.controllers.twilio.impl.sendTextMessage(null, item.number, item.name + message);
+      app.controllers.twilio.impl.sendCallRequest(null, item.number);
     });
 
   });
