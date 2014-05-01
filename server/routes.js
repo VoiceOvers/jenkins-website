@@ -66,6 +66,19 @@ exports.register = function (app) {
   // Auth
   s.post('/api/lost-password', c.auth.lostPasswordPOST);
 
+  s.post('/api/twiml', function *(next) {
+    var builder = require('xmlbuilder');
+
+    var xml = builder.create({
+      response: {
+        say: 'This is a message to notify you that Harry Potter has activated the Emergency profile on a Jenkins system and you are listed as a contact. The Address on file is 4 Privet Drive in the Cupboard Under The Stairs. Little Whinging, Surrey.'
+      }
+    });
+
+    this.response = xml;
+    this.status = 200;
+  });
+
 
   // s.get('/api/helper', function *(next) {
   //   var system = new app.models.System({
