@@ -1,0 +1,12 @@
+{
+  "name": "chosen-bootstrap",
+  "_cacheHeaders": {
+    "ETag": "\"86321c1c6a884d34d48398460dcc7a3ecc92d67e\"",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=bootstrap-chosen-master.zip"
+  },
+  "_release": "e-tag:86321c1c6",
+  "_source": "https://github.com/alxlit/bootstrap-chosen/archive/master.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/alxlit/bootstrap-chosen/archive/master.zip"
+}

@@ -42,8 +42,8 @@ angular.module( project.name, [
   editableOptions.theme = 'bs3';
 })
 
-.controller( 'AppCtrl', function AppCtrl ($scope, $state) {
-  // $scope.user = userService;
+.controller( 'AppCtrl', function AppCtrl ($scope, $state, userService) {
+  $scope.user = userService;
   $scope.$state = $state;
 
   // if (!$scope.user._id && !(/signin/g.test(document.URL.toString())) && !(/register/g.test(document.URL.toString()))) {

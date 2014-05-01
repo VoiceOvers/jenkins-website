@@ -1,19 +1,99 @@
-@import 'flat-ui/less/flat-ui.less';
-@import './../frameworks/common-files/less/icon-font.less';
-@import './../frameworks/common-files/less/mixins.less';
-@import './../frameworks/common-files/less/common.less';
-@import './../frameworks/common-files/less/navbar.less';
-@import './../frameworks/common-files/less/helper.less';
-@import 'ui-kit-header/less/header-4.less';
-@import 'ui-kit-content/less/content-20.less';
-@import 'ui-kit-content/less/content-31.less';
-@import 'ui-kit-content/less/content-37.less';
-@import 'ui-kit-content/less/content-3.less';
-@import 'ui-kit-footer/less/footer-14.less';
+
+@app-background: #f1f3f7;
+@utility-background: #2b2b2b;
+@utility-highlight: #22a78c;
 
 @font-family-demo: myriad-pro-condensed, sans-serif;
 
-.background {
-  background-image: url("../img/Hawaii_001.png");
-  opacity: 1;
+.active {
+  color: @utility-highlight;
+}
+
+.app-content {
+  z-index: 1;
+  background: @app-background;
+}
+
+.utility-nav {
+  ul > li {
+    margin-top: 30px;
+    list-style-type: none;
+    text-align: center;
+
+    i {
+      cursor: pointer;
+      &:hover {
+        color: @utility-highlight;
+      }
+    }
+  }
+  left: 0;
+  position: fixed;
+  width: 70px;
+  height: 100%;
+  color: #fff;
+  z-index: 5000;
+  background: @utility-background;
+
+
+}
+
+.nav-main {
+  ul {
+    float: right;
+    margin-right: 4%;
+    li {
+      a {
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+          color: @utility-background;
+        }
+      }
+
+
+      list-style-type: none;
+      float: left !important;
+      margin-left: 20px;
+      margin-right: 0 !important;
+    }
+  }
+
+  background: @utility-highlight;
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 450;
+  text-transform: uppercase;
+  height: 50px;
+  padding: 10px 0px;
+  vertical-align: middle;
+}
+
+.nav-home,
+.nav-configuration,
+.nav-account {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+}
+
+.views {
+  position: relative;
+  width: ~"calc(100% - 70px)";
+  height: 100%;
+  margin: 0 0 0 70px;
+}
+
+.view-section {
+  margin: 15px;
+}
+
+.home-component {
+  .switch-text {
+    padding-bottom: 5px;
+  }
+
 }

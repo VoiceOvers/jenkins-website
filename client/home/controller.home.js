@@ -8,9 +8,10 @@ module.exports = function ($scope, socket, user) {
   $scope.alerts = [];
   $scope.system = {};
 
+
+
   function refreshSystem () {
     //Ask Cloud Server to send Status of System.
-    console.log(Date.now());
     socket.emit('client:system:state:get', {type: 'User', user: user});
   }
 
@@ -20,10 +21,10 @@ module.exports = function ($scope, socket, user) {
 
   //Event for Cloud Server to send Current Status of System.
   socket.on('client:system:state:status', function (data) {
-    console.log(Date.now());
     if(data.length) {
       $scope.system = data;
       $scope.system = $scope.system[0];
+      $scope.currentZone = $scope.system.zones[0];
     }
   });
 
@@ -32,11 +33,17 @@ module.exports = function ($scope, socket, user) {
     $scope.alerts.push({message: message, type: error ? 'danger' : 'success'});
   };
 
-  $scope.toggleComponent = function (component, zone) {
+  $scope.toggleComponent = function (component) {
+    console.log('here');
     //Emit a socket event to Cloud Server, telling it a component here has been changed.
-    socket.emit('client:system:component:put', {component: component, system: $scope.system, zone: zone});
+    socket.emit('client:system:component:put', {component: component, system: $scope.system, zone: $scope.currentZone});
   };
 
   //Initialize on first state load.
   refreshSystem();
+
+  $scope.$watchCollection('zones', function (newvar, oldvar) {
+    console.log(newvar);
+    console.log(oldvar);
+  });
 };

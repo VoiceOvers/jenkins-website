@@ -9,12 +9,28 @@
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/all.css">
+        <link rel="stylesheet" href="/css/home.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     </head>
 
     <body>
-        <div>
-            <div ui-view></div>
+        <div class="app-content">
+            <div class="nav-main">
+                <ul>
+                    <li><a ui-sref="products">Products</a></li>
+                    <li><a ui-sref="store">Store</a></li>
+                    <li ng-if="!user._id"><a ui-sref="signin">Signin</a></li>
+                    <li ng-if="user._id"><a ui-sref="account">{{user.name}}</a></li>
+                </ul>
+            </div>
+            <nav ng-if="user._id" class="utility-nav">
+                <ul>
+                    <li ng-class="{ active: $state.includes('home') }" ui-sref="home" class="nav-home"><i class="fa fa-tachometer fa-lg"></i></li>
+                    <li ng-class="{ active: $state.includes('configuration') }" ui-sref="configuration" class="nav-configuration"><i class="fa fa-gears fa-lg"></i>
+                    </li>
+                </ul>
+            </nav>
+            <div class="views" ui-view></div>
         </div>
 
 

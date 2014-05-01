@@ -17,6 +17,10 @@
     "angulartics": "0.8.x",
     "angular-xeditable": "~0.1.8",
     "angular-masonry": "~0.7.0",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "chosen": "https://github.com/harvesthq/chosen/releases/download/1.0.0/chosen_v1.0.0.zip",
+    "angular-chosen-localytics": "~1.0.4",
+    "chosen-bootstrap": "https://github.com/alxlit/bootstrap-chosen/archive/master.zip",
+    "angular-toggle-switch": "~0.3.0"
   }
 }

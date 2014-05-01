@@ -1,18 +1,8 @@
 @import './../lib/bootstrap/less/variables.less';
 @import 'flat-ui/less/flat-ui.less';
-@import './../frameworks/common-files/less/icon-font.less';
-@import './../frameworks/common-files/less/mixins.less';
-@import './../frameworks/common-files/less/common.less';
-@import './../frameworks/common-files/less/navbar.less';
-@import './../frameworks/common-files/less/helper.less';
-@import 'ui-kit-header/less/header-10.less';
-@import 'ui-kit-content/less/content-8.less';
-@import 'ui-kit-content/less/content-21.less';
-@import 'ui-kit-content/less/content-31.less';
-@import 'ui-kit-contacts/less/contact-1.less';
-@import 'ui-kit-projects/less/project-4.less';
-@import 'ui-kit-footer/less/footer-3.less';
 @import './../lib/chosen-bootstrap/bootstrap-chosen.less';
+@import './../lib/angular-toggle-switch/angular-toggle-switch-bootstrap.css';
+@import './../lib/angular-toggle-switch/angular-toggle-switch.css';
 
 @font-family-demo: myriad-pro-condensed, sans-serif;
 @startup-basePath: '../';
@@ -27,7 +17,11 @@ a[ng-click] {
 }
 
 
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: none;
+}
 
 .glyphicon {
   display: inline-block;
@@ -69,3 +63,4 @@ a[ng-click] {
 
 //Hook in all views here
 @import '../account/account.less';
+

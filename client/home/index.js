@@ -3,7 +3,8 @@
 var project = require('../../project.json');
 
 module.exports = angular.module(project.name + '.home', [
-  'ui.router'
+  'ui.router',
+  'toggle-switch'
 ])
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'home', {

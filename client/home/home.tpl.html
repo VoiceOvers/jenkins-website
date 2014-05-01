@@ -1,19 +1,31 @@
-<alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
+<section class="view-section">
+  <alert ng-repeat="alert in alerts" type="alert.type" close="alerts.splice($index, 1)">{{alert.message}}</alert>
 
-<section>
-  <h5>{{system.name}}</h5>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="zone in system.zones">
-      <h2>{{zone.name}}</h2>
+  <select
+    chosen
+    class="select-chosen-small"
+    disable-search="true"
+    ng-model="currentZone"
+    ng-options="item.name for item in system.zones">
+  </select>
 
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="component in zone.components">
-          <h5>{{component.name}}</h5>
-          <button type="button" class="btn btn-primary" ng-model="component.status.state" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleComponent(component, zone)">Single Toggle</button>
-        </li>
-      </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">{{currentZone.name}}</div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item home-component" ng-repeat="component in currentZone.components">
+            <div class="row">
+              <div class="col-md-4">
+                <label>{{component.name}}</label>
+              </div>
+              <div class="col-md-8">
+                <toggle-switch ng-change="toggleComponent(component)"model="component.status.state" ng-model="component.status.state"><toggle-switch>
+              </div>
+            </div>
 
-    </li>
-  </ul>
+          </li>
+        </ul>
+    </div>
+    </div>
 
 </section>
