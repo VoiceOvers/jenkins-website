@@ -4,19 +4,14 @@ var app = require('../app'),
 
 exports.impl = {};
 
-exports.impl.sendTextMessage = function *(sender, recipient, message) {
-  var response;
-  try {
-    response = yield twilio.sendMessage({
-      to: recipient,
-      // from: sender,
-      from: '+19858821264',
-      body: message
-    });
-  } catch (e) {
-    console.log(e);
-    throw e;
-  }
-
-  console.log(response);
+exports.impl.sendTextMessage = function (sender, recipient, message) {
+  twilio.sendMessage({
+    to: recipient,
+    // from: sender,
+    from: '+19858821264',
+    body: message
+  }, function (err, data) {
+    console.log(err);
+    console.log(data);
+  });
 };
