@@ -43,6 +43,7 @@ exports.register = function (app) {
     //   { number: '+15125730600', name: 'Ivan Kubacak'},
     //   { number: '+15043436424', name: 'Brittany Fields'}
     // ];
+    var _ = require('lodash');
     var numbers = [
       { number: '+19852372314', name: 'Jeff Brown'},
       { number: '+16825524485', name: 'Edward Lynch'},
