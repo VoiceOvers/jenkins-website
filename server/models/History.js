@@ -15,7 +15,6 @@ mongooseTypes.loadTypes(mongoose);
 
 // Schema
 var schema = new mongoose.Schema({
-  created: {type: Date, default: Date.now()},
   description: {type: String, required: true}, //Describe what happened.
   flags: [{type: String, default: []}],
   meta: { type: mongoose.Schema.Types.Mixed }, //Meta Data on connection and type

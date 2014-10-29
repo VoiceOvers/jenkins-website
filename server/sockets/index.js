@@ -24,14 +24,6 @@ function onClientDisconnect(/*socket*/) {
   //Log to Mongo
 }
 
-function onClientMessage(socket, packet) {
-  // if (packet.type === 'heartbeat') {
-  //   // ...
-  // }
-
-  //TODO Log to mongo
-}
-
 //System socket listeners
 function _registerTinkerbell(socket) {
   socket.on('info', function (data) {
@@ -41,6 +33,11 @@ function _registerTinkerbell(socket) {
   require('./tinkerbells').impl.register(socket);
 }
 
+/**
+ * When the system receives a connect command from a socket somewhere in user land.
+ *
+ * @param {Object} socket Connection to remote module.
+ */
 function onTinkerbellConnect(socket) {
   _registerTinkerbell(socket);
 }
@@ -49,20 +46,8 @@ function onTinkerbellDisconnect(/*socket*/) {
   //TODO log to Mongo
 }
 
-function onTinkerbellMessage(socket, packet) {
-  // if (packet.type === 'heartbeat') {
-  //   // ...
-  // }
-
-  //TODO Log to mongo
-}
-
-
-
 // Public API
 exports.onClientConnect = onClientConnect;
 exports.onClientDisconnect = onClientDisconnect;
-exports.onClientMessage = onClientMessage;
 exports.onTinkerbellConnect = onTinkerbellConnect;
 exports.onTinkerbellDisconnect = onTinkerbellDisconnect;
-exports.onTinkerbellMessage = onTinkerbellMessage;

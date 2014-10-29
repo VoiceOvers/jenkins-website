@@ -11,6 +11,7 @@ var _clients,
     _tinkerbells;
 
 exports.registerTinkerbells = function (app) {
+  // Can take this out, move up top for one construction.
   _socketio = app.servers.socketio.getServer();
 
   _tinkerbells = _socketio
@@ -20,15 +21,6 @@ exports.registerTinkerbells = function (app) {
       socket.address = socket.id + ': ' +
                        socket.handshake.address;
       socket.connectedAt = new Date();
-
-    // // Call onMessage.
-    // (function () {
-    //   var onMessage = socket.manager.transports[socket.id].onMessage;
-    //   socket.manager.transports[socket.id].onMessage = function (packet) {
-    //     onMessage.apply(this, arguments);
-    //     sockets.onTinkerbellMessage(socket, packet);
-    //   };
-    // }());
 
       // Call onDisconnect.
       socket.on('disconnect', function () {
@@ -43,6 +35,7 @@ exports.registerTinkerbells = function (app) {
 };
 
 exports.registerClients = function (app) {
+  // Can take this out, move up top
   _socketio = app.servers.socketio.getServer();
 
   _clients = _socketio
@@ -52,15 +45,6 @@ exports.registerClients = function (app) {
       socket.address = socket.id + ': ' +
                        socket.handshake.address;
       socket.connectedAt = new Date();
-
-      // (function () {
-      //   // var onMessage = socket.manager.transports[socket.id].onMessage;
-      //   console.log(socket);
-      //   // socket.manager.transports[socket.id].onMessage = function (packet) {
-      //   //   onMessage.apply(this, arguments);
-      //   //   sockets.onClientMessage(socket, packet);
-      //   // };
-      // }());
 
       // Call onDisconnect.
       socket.on('disconnect', function () {

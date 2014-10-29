@@ -42,13 +42,13 @@ angular.module( project.name, [
   editableOptions.theme = 'bs3';
 })
 
-.controller( 'AppCtrl', function AppCtrl ($scope, $state, userService) {
+.controller( 'AppCtrl', function AppCtrl ($scope, $state, $timeout, userService) {
   $scope.user = userService;
   $scope.$state = $state;
 
-  // if (!$scope.user._id && !(/signin/g.test(document.URL.toString())) && !(/register/g.test(document.URL.toString()))) {
-  //   $timeout(function () { $state.go('signin'); });
-  // }
+  if (!$scope.user._id && !(/signin/g.test(document.URL.toString())) && !(/register/g.test(document.URL.toString()))) {
+    $timeout(function () { $state.go('signin'); });
+  }
 
 })
 .constant('version', require('../package.json').version)

@@ -90,6 +90,7 @@ exports.register = function (app) {
 
   // s.get('/api/helper', function *(next) {
   //   var system = new app.models.System({
+  //     _id: 1,
   //     access: {
   //       owner: '535837b58975f34d908d0d96'
   //     },
@@ -120,17 +121,4 @@ exports.register = function (app) {
   //   // system.save();
   // });
 
-  //Social Networking (TODO when passport is updated)
-  // s.get('/auth/facebook', c.auth.facebook);
-  // s.get('/auth/facebook/callback', c.auth.facebookCallback);
-  // s.get('/auth/facebook/success', c.auth.facebookSuccess);
-  // s.get('/auth/google', c.auth.google);
-  // s.get('/auth/google/callback', c.auth.googleCallback);
-  // s.get('/auth/google/success', c.auth.googleSuccess);
-  // s.get('/auth/twitter', c.auth.twitter);
-  // s.get('/auth/twitter/callback', c.auth.twitterCallback);
-  // s.get('/auth/twitter/success', c.auth.twitterSuccess);
-
-  // Blacklist (404.html)
-  // s.get(/^\/api(?:[\/#?].*)?$/, c.home.error404);
 };

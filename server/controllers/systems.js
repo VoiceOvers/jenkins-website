@@ -5,72 +5,62 @@ exports.impl = {};
 
 //Retrieve a system from the database.
 exports.impl.systemStateGET = function *(data) {
-  //Validate Input
-  if(!data || !data.type) {
-    throw new Error('Missing Input Parameters on System Query.');
-  }
-
   var system;
-  if(data.type === 'User') { //Find System by user Id
+  switch(data.type){
+    case 'User':
+      //Validate Id
+      var userId = data.user._id;
+      if(!userId) {
+        throw new Error('Missing User Id For Query System.');
+      }
 
-    //Validate Id
-    var userId = data.user._id;
-    if(!userId) {
-      throw new Error('Missing User Id For Query System.');
-    }
+      //Query our systems from the Database.
+      system = yield [
+        app.models.System.find({})
+          .where('access.owner').equals(userId)
+          .select('_id access flags zones status')
+          .lean()
+          .exec(),
+        app.models.System.find({})
+          .where('access.users').in([ userId ])
+          .select('_id access flags zones status')
+          .lean()
+          .exec() ];
 
-    //Query our systems from the Database.
-    system = yield [
-      app.models.System.find({})
-        .where('access.owner').equals(userId)
-        .select('_id access flags zones status')
+      system = _.flatten(system);
+      break;
+    case 'System':
+    case 'Tinkerbell':
+      //Validate Id
+      var systemId = data.system._id;
+      if(!systemId) {
+        throw new Error('Missing System Id For Query System.');
+      }
+
+      //Query our system from the database.
+      system = yield app.models.System.findById(systemId)
         .lean()
-        .exec(),
-      app.models.System.find({})
-        .where('access.users').in([ userId ])
-        .select('_id access flags zones status')
-        .lean()
-        .exec() ];
-
-
-    system = _.flatten(system);
-
-  } else if(data.type === 'System') {
-
-    //Validate Id
-    var systemId = data.system._id;
-    if(!systemId) {
-      throw new Error('Missing System Id For Query System.');
-    }
-
-    //Query our system from the database.
-    system = yield app.models.System.findById(systemId)
-      .lean()
-      .exec();
-  } else if(data.type === 'Tinkerbell') {
-    var moduleId = data.module._id;
-    if(!moduleId) {
-      throw new Error('Missing Module Id For System Query.');
-    }
-
-    system = yield app.models.System.findOne({})
-      .where('moduleId').equals(moduleId)
-      .exec();
-  } else {
-    throw new Error('Unknown Query Type For System.');
+        .exec();
+      break;
+    default: 
+      throw new Error('Unknown Query Type For System.');
+      break;
   }
 
   return system;
 };
 
-exports.impl.systemComponentPUT = function *(data) {
-  //The system has been changed on the website.
+/**
+ * The system has been changed in userland, propogate changes to website land.
+ *
+ */
+exports.impl.systemComponentPUT = function *(data, command) {
 
   if(!data || !data.system || !data.component || !data.zone) {
     throw new Error('Missing Input Parameters on System Change.');
   }
 
-  //Query system from database.
+  // Query system from database.
   var system = yield app.models.System.findById(data.system._id)
     .exec();
 
@@ -79,12 +69,10 @@ exports.impl.systemComponentPUT = function *(data) {
 
   component.name = data.component.name;
   component.status = data.component.status;
-  component.zigbee = data.component.zigbee;
+  component.networkId = data.component.networkId;
 
-  //Save system state
+  // Save system state
   system = yield system.save();
-
-  //Send call for master module update.
 
   return system;
 };

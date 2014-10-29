@@ -1,5 +1,6 @@
 var app = require('../app'),
     co = require('co'),
+    tinkerbells = require('./tinkerbells'),
     _ = require('lodash');
 
 //Wrap the try/catch on the event.
@@ -32,11 +33,29 @@ function wrapEvent(fn, data, socket, emitEvent) {
  */
 exports.impl = {};
 exports.impl.register = function (socket) {
+  socket.emit('client:system:state:probe');
+
   socket.on('client:system:component:put', function (data, cb) {
-    wrapEvent(app.controllers.systems.impl.systemComponentPUT, data, socket, 'client:system:state:status');
+
+    co(function *(){
+      var system = yield app.controllers.systems.impl.systemComponentPUT(data);
+
+      tinkerbells.impl.modulePUT(system);
+
+    })();
   });
 
   socket.on('client:system:state:get', function (data, cb) {
+    // Give the socket an identifier
+    socket.userId = data.user._id;
+
     wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'client:system:state:status');
   });
+};
+
+exports.impl.clientPUT = function (system){
+  var socketio = app.servers.socketio.getServer();
+
+  var moduleSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
+  moduleSocket.emit('tinkerbell:system:state:put', system);
 };

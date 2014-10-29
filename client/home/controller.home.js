@@ -8,8 +8,6 @@ module.exports = function ($scope, socket, user) {
   $scope.alerts = [];
   $scope.system = {};
 
-
-
   function refreshSystem () {
     //Ask Cloud Server to send Status of System.
     socket.emit('client:system:state:get', {type: 'User', user: user});
@@ -19,7 +17,11 @@ module.exports = function ($scope, socket, user) {
     console.log(data);
   });
 
-  //Event for Cloud Server to send Current Status of System.
+  socket.on('client:system:state:probe', function (data){
+    refreshSystem();
+  });
+
+  // Event for Cloud Server to send Current Status of System.
   socket.on('client:system:state:status', function (data) {
     if(data.length) {
       $scope.system = data;
@@ -34,7 +36,7 @@ module.exports = function ($scope, socket, user) {
   };
 
   $scope.toggleComponent = function (component) {
-    //Emit a socket event to Cloud Server, telling it a component here has been changed.
+    // Emit a socket event to Cloud Server, telling it a component here has been changed.
     socket.emit('client:system:component:put', {component: component, system: $scope.system, zone: $scope.currentZone});
   };
 

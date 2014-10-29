@@ -17,15 +17,15 @@ var Zone = require('./Zone');
 
 // Schema
 var schema = new mongoose.Schema({
-  access: {
-    owner: {type: mongoose.Schema.ObjectId, ref: 'User'},
-    users: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
-  },
-  flags: [{type: String, default: []}],
-  moduleId: {type: String, required: true},
-  name: {type: String, default: 'My Jenkins System'},
-  zones: [ Zone.schema ]
-}, {_id: true});
+    _id: Number,
+    access: {
+        owner: {type: mongoose.Schema.ObjectId, ref: 'User'},
+        users: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
+    },
+    flags: [{type: String, default: []}],
+    name: {type: String, default: 'My Jenkins System'},
+    zones: [ Zone.schema ]
+});
 
 schema.plugin(mongooseTimestamp);
 

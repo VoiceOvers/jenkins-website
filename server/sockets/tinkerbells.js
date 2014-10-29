@@ -8,6 +8,7 @@ function wrapEvent(fn, data, socket, emitEvent) {
     try {
       var obj = yield fn(data);
     } catch (e) {
+      // TODO (BRYCE) Take this out for live.
       console.log(e);
       socket.emit('error', e.toString());
     }
@@ -32,17 +33,38 @@ exports.impl = {};
 
  */
 exports.impl.register = function (socket) {
+  // Start by getting status
+  socket.emit('tinkerbell:system:state:get');
+
+  // The system in userland has had one of its component's states change from voice command / manual
   socket.on('tinkerbell:system:component:put', function (data, cb) {
-    wrapEvent(app.controllers.systems.impl.systemComponentPUT, data, socket, 'tinkerbell:system:state:status');
+    data.type = 'Tinkerbell';
+    
+    co(function *(){
+      var system = yield app.controllers.systems.impl.systemComponentPut(data);
+
+      var socketio = app.servers.socketio.getServer();
+
+      // console.log(socketio);
+    })();
   });
 
-  socket.on('tinkerbell:system:state:get', function (data, cb) {
-    socket.moduleId = data.module._id;
-    wrapEvent(app.controllers.systems.impl.systemStateGET, data, socket, 'tinkerbell:system:state:status');
+  // The system in userland is telling us the status of all its components.
+  socket.on('tinkerbell:system:state:status', function (data, cb){
+    socket.systemId = data.system._id; // Set id so we can query from all sockets.
+
+    // Set the database to reflect the module.
   });
 
+  // The system in userland has received an emergency phrase, find profile and activate.
   socket.on('tinkerbell:system:state:emergency', function (data) {
     app.controllers.twilio.sendTextMessage(null, '+19852372314', 'Hey budddyyy');
   });
 };
 
+exports.impl.modulePUT = function (system){
+  var socketio = app.servers.socketio.getServer();
+
+  var moduleSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
+  moduleSocket.emit('tinkerbell:system:state:put', system);
+};
