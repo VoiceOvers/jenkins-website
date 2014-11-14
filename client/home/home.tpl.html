@@ -20,7 +20,10 @@
               <label>{{component.name}}</label>
             </div>
             <div class="col-md-8">
-              <toggle-switch model="component.status.state" ng-click="toggleComponent(component);"><toggle-switch>
+              <toggle-switch model="component.state.active" ng-click="toggleComponent(component);"></toggle-switch>
+              <br/>
+              Position: {{component.state.position}}
+              <input type="range" ng-model="component.state.position" max="{{component.properties.max}}" min="{{component.properties.min}}" ng-change="toggleComponent(component)"></input>
             </div>
           </div>
 

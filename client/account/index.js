@@ -19,9 +19,6 @@ module.exports = angular.module(project.name + '.account', [
     })
     .state( 'account.basic', {
       templateUrl: '/account/account.settings.tpl.html'
-    })
-    .state( 'account.password', {
-      templateUrl: '/account/account.password.tpl.html'
     });
 })
 .controller('AccountCtrl', require('./controller.account.js'));

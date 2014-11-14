@@ -41,9 +41,12 @@ exports.impl.register = function (socket) {
       var system = yield app.controllers.systems.impl.systemComponentPUT(data);
 
       tinkerbells.impl.modulePUT(system);
-
     })();
   });
+
+  socket.on('client:system:put', function (data){
+    wrapEvent(app.controllers.systems.impl.systemPUT, data, socket, 'client:system:cb');
+  })
 
   socket.on('client:system:state:get', function (data, cb) {
     // Give the socket an identifier
@@ -56,6 +59,6 @@ exports.impl.register = function (socket) {
 exports.impl.clientPUT = function (system){
   var socketio = app.servers.socketio.getServer();
 
-  var moduleSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
-  moduleSocket.emit('tinkerbell:system:state:put', system);
+  var clientSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
+  clientSocket.emit('tinkerbell:system:state:put', system);
 };

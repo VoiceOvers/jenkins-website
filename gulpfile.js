@@ -98,7 +98,8 @@ gulp.task('dependencies', function () {
     project.path.bower + '/chosen/chosen.jquery.js',
     project.path.bower + '/angular-xeditable/dist/js/xeditable.js',
     project.path.bower + '/angular-masonry/angular-masonry.js',
-    project.path.bower + '/angular-toggle-switch/angular-toggle-switch.js'
+    project.path.bower + '/angular-toggle-switch/angular-toggle-switch.js',
+    project.path.bower + '/angular-slider/slider.js',
   ])
   .pipe($.concat('deps.js'))
   .pipe(gulp.dest(project.path.client + '/js/'));

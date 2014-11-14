@@ -19,12 +19,14 @@ mongooseTypes.loadTypes(mongoose);
 var schema = new mongoose.Schema({
   flags: [{type: String, default: []}], //Type of Component, Etc.
   history: [ HistorySchema.schema ],
-  status: {
+  properties: {
+    max: {type: Number, default: 0}, //Maximum Interval Position
+    min: {type: Number, default: 0} //Minimum Interval Position
+  },
+  state: {
     active: {type: Boolean, default: true}, //Have we received updates recently.
-    max: {type: Number}, //Maximum Interval Position
-    min: {type: Number}, //Minimum Interval Position
-    position: {type: Number}, //Current Interval Position
-    state: {type: Boolean, default: false}, //Boolean to show ON/OFF status
+    position: {type: Number, default: 0}, //Current Interval Position
+    stale: {type: Boolean, default: false} //Boolean to show ON/OFF status
   },
   name: {type: String, required: true}, //Name of Component
   zigbee: {

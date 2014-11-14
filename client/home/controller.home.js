@@ -4,6 +4,7 @@
 
 module.exports = function ($scope, socket, user) {
 
+
   //Initialize scope variables to avoid use of ng-cloak
   $scope.alerts = [];
   $scope.system = {};
@@ -28,6 +29,10 @@ module.exports = function ($scope, socket, user) {
       $scope.system = $scope.system[0];
       $scope.currentZone = $scope.system.zones[0];
     }
+  });
+
+  socket.on('client:system:cb', function (){
+    $scope.toggleAlert('Success!', false);
   });
 
   $scope.toggleAlert = function (message, error) {

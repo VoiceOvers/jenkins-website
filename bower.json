@@ -5,12 +5,12 @@
     "es5-shim": "~2.0.8",
     "font-awesome": "~4.0.3",
     "modernizr": "~2.7.x",
-    "angular": "~1.2.12",
-    "angular-cookies": "~1.2.9",
-    "angular-sanitize": "~1.2.9",
+    "angular": "~1.2.26",
+    "angular-cookies": "~1.2.26",
+    "angular-sanitize": "~1.2.26",
     "angular-mocks": "~1.2.9",
     "angular-ui-router": "0.2.10",
-    "angular-bootstrap": "~0.10.0",
+    "angular-bootstrap": "~0.11.2",
     "sass-bootstrap": "3.0.x",
     "angular-ui-utils": "~0.1.x",
     "angular-easyfb": "0.2.x",
@@ -21,6 +21,8 @@
     "chosen": "https://github.com/harvesthq/chosen/releases/download/1.0.0/chosen_v1.0.0.zip",
     "angular-chosen-localytics": "~1.0.4",
     "chosen-bootstrap": "https://github.com/alxlit/bootstrap-chosen/archive/master.zip",
-    "angular-toggle-switch": "~0.3.0"
+    "angular-toggle-switch": "~0.3.0",
+    "ng-range-slider": "~0.1.7",
+    "angular-slider": "~0.2.3"
   }
 }

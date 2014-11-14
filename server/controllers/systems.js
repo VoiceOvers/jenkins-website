@@ -50,6 +50,20 @@ exports.impl.systemStateGET = function *(data) {
   return system;
 };
 
+exports.impl.systemPUT = function *(data){
+  if(!data){
+    throw new Error('Missing Input Parameters on System PUT');
+  }
+
+  var system = yield app.models.System.findById(data.system._id).exec();
+
+  system.emergency = data.system.emergency;
+
+  system = yield system.save();
+
+  return system;
+};
+
 /**
  * The system has been changed in userland, propogate changes to website land.
  *
@@ -68,8 +82,9 @@ exports.impl.systemComponentPUT = function *(data, command) {
   var component = zone.components.id(data.component._id);
 
   component.name = data.component.name;
-  component.status = data.component.status;
-  component.networkId = data.component.networkId;
+  component.state.status = data.component.state.status;
+  component.state.position = data.component.state.position;
+  component.zigbee.networkId = data.component.zigbee.networkId;
 
   // Save system state
   system = yield system.save();

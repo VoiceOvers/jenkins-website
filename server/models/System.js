@@ -24,7 +24,10 @@ var schema = new mongoose.Schema({
     },
     flags: [{type: String, default: []}],
     name: {type: String, default: 'My Jenkins System'},
-    zones: [ Zone.schema ]
+    zones: [ Zone.schema ],
+    emergency: {
+        numbers: [ String ]
+    }
 });
 
 schema.plugin(mongooseTimestamp);

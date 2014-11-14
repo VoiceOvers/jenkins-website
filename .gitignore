@@ -17,3 +17,4 @@ client/css/styles.css
 client/.sass-cache
 client/js/bundle.*
 client/js/templates.js
+client/lib/

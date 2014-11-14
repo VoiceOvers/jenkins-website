@@ -23,7 +23,7 @@
     "co-body": "~0.0.x",
     "colors": "~0.6.2",
     "es6ify": "0.4.x",
-    "gulp": "~3.5.x",
+    "gulp": "~3.6.x",
     "gulp-cached": "0.0.3",
     "gulp-concat": "2.x.x",
     "gulp-less": "~1.2.2",
