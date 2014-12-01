@@ -4,7 +4,6 @@ var project = require('../../project.json'),
     io = require('socket.io-client');
 
 module.exports = function ($rootScope, userService) {
-
   if(userService._id){
     var socket = io.connect('/clients');
 

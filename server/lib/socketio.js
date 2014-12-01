@@ -4,7 +4,8 @@ var util = require('util');
 
 var _ = require('lodash'),
     socketio = require('socket.io'),
-    redis = require('socket.io-redis');
+    redis = require('redis'),
+    RedisStore = require('socket.io/lib/stores/redis');
 
 var redisDB = require('./redisconnect');
 
@@ -29,27 +30,27 @@ function run(app) {
     throw new Error('Missing config variable: socketio.store');
   }
 
-  _server.adapter(redis({
-    key: app.config.session.store.redis.prefix,
-    host: app.config.db.redis.host,
-    port: app.config.db.redis.port,
-    pubClient: redisDB.createClient(app.config.db.redis),
-    subClient: redisDB.createClient(app.config.db.redis),
-  }));
+  // _server.adapter(redis({
+  //   key: app.config.session.store.redis.prefix,
+  //   host: app.config.db.redis.host,
+  //   port: app.config.db.redis.port,
+  //   pubClient: redisDB.createClient(app.config.db.redis),
+  //   subClient: redisDB.createClient(app.config.db.redis),
+  // }));
 
-  // if (app.config.socketio.store === 'redis') {
-  //   _server.set('store', new RedisStore({
-  //     redis: redis,
-  //     redisPub: redisDB.createClient(app.config.db.redis),
-  //     redisSub: redisDB.createClient(app.config.db.redis),
-  //     redisClient: redisDB.createClient(app.config.db.redis)
-  //   }));
-  // }
+  if (app.config.socketio.store === 'redis') {
+    _server.set('store', new RedisStore({
+      redis: redis,
+      redisPub: redisDB.createClient(app.config.db.redis),
+      redisSub: redisDB.createClient(app.config.db.redis),
+      redisClient: redisDB.createClient(app.config.db.redis)
+    }));
+  }
 
-  // _server.enable('browser client minification');
-  // _server.enable('browser client etag');
-  // _server.enable('browser client gzip');
-  // _server.set('log level', 1);
+  _server.enable('browser client minification');
+  _server.enable('browser client etag');
+  _server.enable('browser client gzip');
+  _server.set('log level', 1);
 
   console.log('Socket.io Server Running...')
 }

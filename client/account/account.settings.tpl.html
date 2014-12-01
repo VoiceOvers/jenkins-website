@@ -69,10 +69,10 @@
 
         <div class="panel-body">
           <div class="row content">
-            <ul class="col-xs-6">
+            <ul class="col-xs-offset-1 col-xs-6">
               <li ng-repeat="telNumber in system.emergency.numbers">{{telNumber}}</li>
             </ul>
-            <input type="text" ng-model="newContact.number" />
+            <input type="text" ng-model="newContact.number" placeholder="Enter New Contact..."/>
             <button class="btn btn-primary" ng-click="addContact()">Submit</button>
           </div>
         </div>

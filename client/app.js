@@ -1,5 +1,6 @@
 'use strict';
 
+// Give us source maps for browserify
 require('source-map-support').install();
 var project = require('../project.json');
 
@@ -13,7 +14,6 @@ angular.module( project.name, [
   'ui.jq',
   'xeditable',
   require('./account').name,
-  // require('./admin').name,
   require('./auth').name,
   require('./home').name,
   require('./register').name
@@ -36,6 +36,7 @@ angular.module( project.name, [
   });
 })
 
+// Configure for bootstrap theme on elements from Bootstrap 3
 .run(function (editableOptions) {
   editableOptions.theme = 'bs3';
 })
@@ -44,6 +45,7 @@ angular.module( project.name, [
   $scope.user = userService;
   $scope.$state = $state;
 
+  // If the user isn't signed in, redirect to the signin / register page.
   if (!$scope.user._id && !(/signin/g.test(document.URL.toString())) && !(/register/g.test(document.URL.toString()))) {
     $timeout(function () { $state.go('signin'); });
   }
