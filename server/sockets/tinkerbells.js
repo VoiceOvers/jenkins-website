@@ -60,7 +60,8 @@ exports.impl.register = function (socket) {
   // The system in userland has received an emergency phrase, find profile and activate.
   socket.on('tinkerbell:system:state:emergency', function (data) {
     co(function *(){
-      var result = yield app.controllers.twilio.sendTextMessage(socket.systemId);
+      console.log(socket.systemId);
+      var result = yield app.controllers.twilio.impl.sendTextMessage(socket.systemId);
     })();
   });
 };
