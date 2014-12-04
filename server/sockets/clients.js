@@ -40,7 +40,6 @@ exports.impl.register = function (socket) {
     co(function *(){
       var system = yield app.controllers.systems.impl.systemComponentPUT(data);
 
-      console.log(system);
       tinkerbells.impl.modulePUT(system);
     })();
   });

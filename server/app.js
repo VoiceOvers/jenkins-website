@@ -15,7 +15,7 @@ var requireDir = require('require-dir');
 var koa = require('koa');
 
 //Find out which environment we are preparing for.
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'heroku';
 var config = require(path.join(path.normalize(__dirname + '/../config'), process.env.NODE_ENV));
 
 // Create an app

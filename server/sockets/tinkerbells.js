@@ -69,7 +69,6 @@ exports.impl.modulePUT = function (system){
   var socketio = app.servers.socketio.getServer();
 
   var moduleSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
-  console.log(moduleSocket);
   // If that module exists, lets go ahead and emit the update.
   if (moduleSocket) {
     moduleSocket.emit('tinkerbell:system:state:put', system);
