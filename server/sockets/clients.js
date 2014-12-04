@@ -40,6 +40,7 @@ exports.impl.register = function (socket) {
     co(function *(){
       var system = yield app.controllers.systems.impl.systemComponentPUT(data);
 
+      console.log(system);
       tinkerbells.impl.modulePUT(system);
     })();
   });
@@ -59,6 +60,6 @@ exports.impl.register = function (socket) {
 exports.impl.clientPUT = function (system){
   var socketio = app.servers.socketio.getServer();
 
-  var clientSocket = _.find(socketio['nsps']['/tinkerbells']['sockets'], {connected: true, systemId: system._id});
+  var clientSocket = _.find(socketio['nsps']['/clients']['sockets'], {connected: true, systemId: system._id});
   clientSocket.emit('tinkerbell:system:state:put', system);
 };
